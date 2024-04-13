@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub LGTM Extension",
+  "version": "1.0",
+  "description": "Insert LGTM images into GitHub review comments.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/lgtm-icon.png"
+  },
+  "icons": {
+    "16": "images/lgtm-icon.png",
+    "48": "images/lgtm-icon.png",
+    "128": "images/lgtm-icon.png"
+  }
+}
