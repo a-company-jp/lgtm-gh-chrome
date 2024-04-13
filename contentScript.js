@@ -1,17 +1,26 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const reviewBox = document.querySelector('.review-form');
-  if (reviewBox) {
-    const lgtmButton = document.createElement('button');
-    lgtmButton.innerText = 'Insert LGTM';
-    lgtmButton.addEventListener('click', insertLGTMImage);
-    reviewBox.appendChild(lgtmButton);
+const observer = new MutationObserver((mutations, obs) => {
+  console.log('mutation detected');
+  const fileAttachmentSection = document.querySelector('.js-upload-markdown-image.is-default');
+  if (fileAttachmentSection) {
+    obs.disconnect();
+    console.log('fileAttachmentSection found');
+    const newElementHtml = `
+      <div class="pr-2 pl-2 pb-2">
+        <button type="button" class="Button--invisible Button--small Box Button">
+          <span class="Button-content">
+            <span class="Button-visual Button-leadingVisual">
+            LGTM
+            </span>
+            <span class="Button-label">POST LGTM with LGTM Generator</span>
+          </span>
+        </button>
+      </div>`;
+
+    fileAttachmentSection.insertAdjacentHTML('beforeend', newElementHtml);
   }
 });
 
-function insertLGTMImage() {
-  const imageUrl = 'https://example.com/lgtm.png'; // 実際にはAPIから取得したURLを使用
-  const commentBox = document.querySelector('.comment-form-textarea');
-  if (commentBox) {
-    commentBox.value += `![LGTM](${imageUrl})`;
-  }
-}
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
