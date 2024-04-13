@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://github.com/*"
+        "https://github.com/*/pull/*"
       ],
       "js": [
         "contentScript.js"
@@ -17,7 +17,6 @@
     }
   ],
   "action": {
-    "default_popup": "popup.html",
     "default_icon": "images/lgtm-icon.png"
   },
   "icons": {
